@@ -1,6 +1,6 @@
 import { Component } from "react";
 // import { ImSearch } from 'react-icons/im';
-import { toast } from "react-toastify";
+// import { toast } from "react-toastify";
 
 export default class Searchbar extends Component {
   state = {
@@ -15,7 +15,7 @@ export default class Searchbar extends Component {
     event.preventDefault();
 
     if (this.state.imageName.trim() === "") {
-      toast.error("Введите имя покемона.");
+      alert("Введите имя покемона.");
       return;
     }
 
@@ -26,7 +26,7 @@ export default class Searchbar extends Component {
   render() {
     return (
       <header className="Searchbar">
-        <form className="SearchForm">
+        <form onSubmit={this.handleSubmit} className="SearchForm">
           <button type="submit" className="SearchForm-button">
             <span className="SearchForm-button-label">Search</span>
           </button>
@@ -37,8 +37,8 @@ export default class Searchbar extends Component {
             name="imageName"
             value={this.state.imageName}
             onChange={this.handleNameChange}
-            autocomplete="off"
-            autofocus
+            autoComplete="off"
+            autoFocus
             placeholder="Search images and photos"
           />
         </form>

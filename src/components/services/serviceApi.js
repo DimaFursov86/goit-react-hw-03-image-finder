@@ -1,6 +1,6 @@
 function fetchImages(
   text,
-  page,
+  page = 1,
   per_page = 12,
   API_KEY = "23001140-4461295a2c2bf2ca42afdabe3"
 ) {
