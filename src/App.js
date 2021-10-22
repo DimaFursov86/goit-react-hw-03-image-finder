@@ -1,5 +1,5 @@
 import { Component } from "react";
-import { ToastContainer } from "react-toastify";
+
 import Searchbar from "./components/Searchbar";
 import ImageGallery from "./components/ImageGallery";
 import serviceAPI from "./components/services/serviceApi";
@@ -64,6 +64,10 @@ export default class App extends Component {
         )
         .catch((error) => this.setState({ error, status: Status.REJECTED }));
     }
+    window.scrollTo({
+      top: document.documentElement.scrollHeight,
+      behavior: "smooth",
+    });
   }
   openModal = (e) => {
     this.setState({ largeImg: e.target.dataset.source });
@@ -79,7 +83,7 @@ export default class App extends Component {
     const { images, status, showModal, largeImg } = this.state;
 
     return (
-      <div>
+      <div className={s.box}>
         <Searchbar onSubmit={this.handleFormSubmit} />
 
         {status === Status.RESOLVED && (
@@ -90,8 +94,8 @@ export default class App extends Component {
             <img className={s.imgpoz} src={largeImg} alt={largeImg} />
           </Modal>
         )}
-        <Button onClick={this.onPageClick} />
-        <ToastContainer />
+        {status === Status.REJECTED && <h2>The request failed</h2>}
+        {status === Status.RESOLVED && <Button onClick={this.onPageClick} />}
       </div>
     );
   }
