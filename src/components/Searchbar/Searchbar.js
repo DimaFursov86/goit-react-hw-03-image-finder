@@ -1,13 +1,15 @@
 import { Component } from "react";
 import s from "./Searchbar.module.scss";
-// import { ImSearch } from 'react-icons/im';
-// import { toast } from "react-toastify";
+import { ImSearch } from "react-icons/im";
+import PropTypes from "prop-types";
 
 export default class Searchbar extends Component {
   state = {
     imageName: "",
   };
-
+  static propTypes = {
+    onSubmit: PropTypes.func.isRequired,
+  };
   handleNameChange = (event) => {
     this.setState({ imageName: event.currentTarget.value.toLowerCase() });
   };
@@ -28,8 +30,9 @@ export default class Searchbar extends Component {
     return (
       <header className={s.searchbar}>
         <form onSubmit={this.handleSubmit} className="SearchForm">
-          <button type="submit" className="SearchForm-button">
-            <span className="SearchForm-button-label">Search</span>
+          <button type="submit" className={s.searchButton}>
+            <ImSearch style={{ marginRight: 8 }} />
+            {/* <span className="SearchForm-button-label">Search</span> */}
           </button>
 
           <input

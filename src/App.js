@@ -1,5 +1,4 @@
 import { Component } from "react";
-
 import Searchbar from "./components/Searchbar";
 import ImageGallery from "./components/ImageGallery";
 import serviceAPI from "./components/services/serviceApi";
@@ -7,6 +6,8 @@ import Button from "./components/Button";
 import Modal from "./components/Modal";
 import s from "../src/App.module.scss";
 import "modern-normalize/modern-normalize.css";
+import Loaders from "./components/Loader";
+
 const Status = {
   IDLE: "idle",
   PENDING: "pending",
@@ -94,6 +95,7 @@ export default class App extends Component {
             <img className={s.imgpoz} src={largeImg} alt={largeImg} />
           </Modal>
         )}
+        {status === Status.PENDING && <Loaders />}
         {status === Status.REJECTED && <h2>The request failed</h2>}
         {status === Status.RESOLVED && <Button onClick={this.onPageClick} />}
       </div>
