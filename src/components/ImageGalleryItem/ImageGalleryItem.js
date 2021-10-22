@@ -1,3 +1,5 @@
+import s from "./ImageGalleryItem.module.scss";
+
 export default function ImageGalleryItem({
   webformatURL,
   tags,
@@ -5,13 +7,13 @@ export default function ImageGalleryItem({
   largeImageURL,
 }) {
   return (
-    <li className="ImageGalleryItem">
+    <li className={s.listItem}>
       <img
         src={webformatURL}
         alt={tags}
         data-source={largeImageURL}
         onClick={openModal}
-        className="ImageGalleryItem-image"
+        className={s.photoCard}
       />
     </li>
   );

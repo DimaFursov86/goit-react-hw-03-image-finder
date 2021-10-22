@@ -1,8 +1,9 @@
 import ImageGalleryItem from "../ImageGalleryItem";
+import s from "./ImageGallery.module.scss";
 
 export default function ImageGallery({ images, openModal }) {
   return (
-    <ul className="ImageGallery">
+    <ul className={s.gallery}>
       {images.map(({ webformatURL, tags, largeImageURL }, index) => (
         <ImageGalleryItem
           key={index}
