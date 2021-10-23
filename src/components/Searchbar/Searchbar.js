@@ -18,7 +18,7 @@ export default class Searchbar extends Component {
     event.preventDefault();
 
     if (this.state.imageName.trim() === "") {
-      alert("Введите имя покемона.");
+      alert("Enter text.");
       return;
     }
 

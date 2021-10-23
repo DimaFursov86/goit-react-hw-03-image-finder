@@ -1,7 +1,7 @@
 import { Component } from "react";
 import Searchbar from "./components/Searchbar";
 import ImageGallery from "./components/ImageGallery";
-import serviceAPI from "./components/services/serviceApi";
+import serviceAPI from "../src/servicesAPI";
 import Button from "./components/Button";
 import Modal from "./components/Modal";
 import s from "../src/App.module.scss";
@@ -40,17 +40,22 @@ export default class App extends Component {
     const page = this.state.page;
 
     if (prevName !== text) {
-      this.setState({ status: Status.PENDING });
-
-      serviceAPI
-        .fetchImages(text, page)
-        .then((images) =>
-          this.setState({
-            images: [...images.hits],
-            status: Status.RESOLVED,
-          })
-        )
-        .catch((error) => this.setState({ error, status: Status.REJECTED }));
+      this.setState({ images: [], page: 1, status: Status.PENDING });
+      console.log(page);
+      console.log(this.state.images);
+      console.log(prevName);
+      console.log(text);
+      if (page === 1) {
+        serviceAPI
+          .fetchImages(text, page)
+          .then((images) =>
+            this.setState({
+              images: [...images.hits],
+              status: Status.RESOLVED,
+            })
+          )
+          .catch((error) => this.setState({ error, status: Status.REJECTED }));
+      }
     }
     if (prevPage !== page) {
       this.setState({ status: Status.PENDING });
@@ -97,7 +102,9 @@ export default class App extends Component {
         )}
         {status === Status.PENDING && <Loaders />}
         {status === Status.REJECTED && <h2>The request failed</h2>}
-        {status === Status.RESOLVED && <Button onClick={this.onPageClick} />}
+        {status === Status.RESOLVED && images.length !== 0 && (
+          <Button onClick={this.onPageClick} />
+        )}
       </div>
     );
   }

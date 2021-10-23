@@ -4,14 +4,15 @@ import PropTypes from "prop-types";
 export default function ImageGallery({ images, openModal }) {
   return (
     <ul className={s.gallery}>
-      {images.map(({ webformatURL, tags, largeImageURL }, index) => (
-        <ImageGalleryItem
-          key={index}
-          tags={tags}
-          webformatURL={webformatURL}
-          largeImageURL={largeImageURL}
-          openModal={openModal}
-        />
+      {images.map(({ webformatURL, id, largeImageURL }, index) => (
+        <li key={index} className={s.listItem}>
+          <ImageGalleryItem
+            id={id}
+            webformatURL={webformatURL}
+            largeImageURL={largeImageURL}
+            openModal={openModal}
+          />
+        </li>
       ))}
     </ul>
   );

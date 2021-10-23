@@ -2,20 +2,18 @@ import s from "./ImageGalleryItem.module.scss";
 import PropTypes from "prop-types";
 export default function ImageGalleryItem({
   webformatURL,
-  tags,
+  id,
   openModal,
   largeImageURL,
 }) {
   return (
-    <li className={s.listItem}>
-      <img
-        src={webformatURL}
-        alt={tags}
-        data-source={largeImageURL}
-        onClick={openModal}
-        className={s.photoCard}
-      />
-    </li>
+    <img
+      src={webformatURL}
+      alt={id}
+      data-source={largeImageURL}
+      onClick={openModal}
+      className={s.photoCard}
+    />
   );
 }
 ImageGalleryItem.propTypes = {
