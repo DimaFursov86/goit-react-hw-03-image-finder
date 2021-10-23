@@ -41,10 +41,7 @@ export default class App extends Component {
 
     if (prevName !== text) {
       this.setState({ images: [], page: 1, status: Status.PENDING });
-      console.log(page);
-      console.log(this.state.images);
-      console.log(prevName);
-      console.log(text);
+
       if (page === 1) {
         serviceAPI
           .fetchImages(text, page)
