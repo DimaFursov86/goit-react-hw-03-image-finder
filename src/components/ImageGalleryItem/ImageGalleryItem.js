@@ -18,7 +18,7 @@ export default function ImageGalleryItem({
 }
 ImageGalleryItem.propTypes = {
   webformatURL: PropTypes.string.isRequired,
-  tags: PropTypes.string.isRequired,
+  id: PropTypes.number.isRequired,
   openModal: PropTypes.func.isRequired,
   largeImageURL: PropTypes.string.isRequired,
 };
