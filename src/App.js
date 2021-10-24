@@ -89,14 +89,10 @@ export default class App extends Component {
       <div className={s.box}>
         <Searchbar onSubmit={this.handleFormSubmit} />
 
-        {status === Status.RESOLVED && (
+        {status === Status.RESOLVED && images.length !== 0 && (
           <ImageGallery images={images} openModal={this.openModal} />
         )}
-        {showModal && (
-          <Modal onClose={this.toggleModal}>
-            <img className={s.imgpoz} src={largeImg} alt={largeImg} />
-          </Modal>
-        )}
+        {showModal && <Modal onClose={this.toggleModal} src={largeImg} />}
         {status === Status.PENDING && <Loaders />}
         {status === Status.REJECTED && <h2>The request failed</h2>}
         {status === Status.RESOLVED && images.length !== 0 && (

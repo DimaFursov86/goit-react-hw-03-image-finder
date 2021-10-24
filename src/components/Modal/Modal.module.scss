@@ -5,6 +5,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgba(20, 18, 18, 0.89);
+  z-index: 999;
 }
 
 .ModalContent {
@@ -19,4 +20,8 @@
   background-position: 50% 50%;
   border: none;
   border-radius: 3px;
+}
+.imgpoz {
+  object-fit: contain;
+  max-width: 100%;
 }

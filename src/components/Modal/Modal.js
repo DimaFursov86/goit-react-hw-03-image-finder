@@ -1,8 +1,7 @@
 import React, { Component } from "react";
-import { createPortal } from "react-dom";
+
 import s from "./Modal.module.scss";
 import PropTypes from "prop-types";
-const modalRoot = document.querySelector("#modal-root");
 
 export default class Modal extends Component {
   static propTypes = {
@@ -29,11 +28,12 @@ export default class Modal extends Component {
   };
 
   render() {
-    return createPortal(
+    return (
       <div className={s.ModalBackdrop} onClick={this.handleBackdropClick}>
-        <div className={s.ModalContent}>{this.props.children}</div>
-      </div>,
-      modalRoot
+        <div className={s.ModalContent}>
+          <img className={s.imgpoz} src={this.props.src} alt="" />
+        </div>
+      </div>
     );
   }
 }
