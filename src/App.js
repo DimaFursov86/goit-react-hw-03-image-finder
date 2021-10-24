@@ -55,15 +55,13 @@ export default class App extends Component {
       }
     }
     if (prevPage !== page) {
-      this.setState({ status: Status.PENDING });
-
       serviceAPI
         .fetchImages(text, page)
         .then((images) =>
-          this.setState({
-            images: [...this.state.images, ...images.hits],
+          this.setState((prevState) => ({
+            images: [...prevState.images, ...images.hits],
             status: Status.RESOLVED,
-          })
+          }))
         )
         .catch((error) => this.setState({ error, status: Status.REJECTED }));
     }
@@ -93,7 +91,7 @@ export default class App extends Component {
           <ImageGallery images={images} openModal={this.openModal} />
         )}
         {showModal && <Modal onClose={this.toggleModal} src={largeImg} />}
-        {status === Status.PENDING && <Loaders />}
+        {status === Status.PENDING && images.length === 0 && <Loaders />}
         {status === Status.REJECTED && <h2>The request failed</h2>}
         {status === Status.RESOLVED && images.length !== 0 && (
           <Button onClick={this.onPageClick} />
