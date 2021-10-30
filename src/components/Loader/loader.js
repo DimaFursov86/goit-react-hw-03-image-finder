@@ -9,7 +9,7 @@ export default class Loaders extends Component {
         color="#00BFFF"
         height={100}
         width={100}
-        timeout={3000} //3 secs
+        timeout={1000} //2 secs
       />
     );
   }
